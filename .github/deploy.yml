@@ -1,0 +1,21 @@
+# .github/workflows/deploy.yml
+
+name: Deploy to Nekoweb
+
+on:
+  push:
+    branches:
+      - main  # or 'master' or whatever your main branch is called
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Nekoweb
+        uses: jonasbn/deploy-to-nekoweb@v1
+        with:
+          token: ${{ secrets.NEKOWEB_TOKEN }}
+
