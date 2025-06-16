@@ -1,21 +1,23 @@
-# .github/workflows/deploy.yml
 
-name: Deploy to Nekoweb
 
-on:
-  push:
-    branches:
-      - main  # or 'master' or whatever your main branch is called
+on: [push]
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
+    name: deploy2nekoweb
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Deploy to Nekoweb
-        uses: jonasbn/deploy-to-nekoweb@v1
+        
+      # your build step here
+        
+      - name: deploy2nekoweb
+        uses: indiefellas/deploy2nekoweb@v4
         with:
-          token: ${{ secrets.NEKOWEB_TOKEN }}
+          nekoweb-api-key: ${{ secrets.NEKOWEB_TOKEN }}
+          nekoweb-cookie: ${{ secrets.NEKOWEB_COOKIE }}
+          nekoweb-folder: 'site'
+          directory: 'public'
+
 
